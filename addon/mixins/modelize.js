@@ -40,9 +40,12 @@ export default Ember.Mixin.create({
         };
 
         for ( var property in response ) {
-            // Appears to be an issue with the __each attribute in some Ember arrays
-            // that causes a recursive loop that crashes the browser
-            if ( '__each' === property || '[]' === property ) {
+            // Don't modelize special array properties
+            if ( '__each' === property ||
+                '[]' === property ||
+                '@each' === property ||
+                'firstObject' === property ||
+                'lastObject' === property ) {
                 continue;
             }
 
@@ -53,7 +56,7 @@ export default Ember.Mixin.create({
 
                     if ( 'function' === typeof classProperty ) {
                         if ( Ember.isArray( response[ property ] ) ) {
-                            response[ property ] = response[ property ].map( mapArrayToClass );
+                            response[ property ] = Ember.A( response[ property ].map( mapArrayToClass ) );
                         } else {
                             response[ property ] = classProperty.create( response[ property ] );
                         }

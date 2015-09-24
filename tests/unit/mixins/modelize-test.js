@@ -1,11 +1,12 @@
 import Ember from 'ember';
 import SlModelize from 'sl-ember-modelize/mixins/modelize';
+import { module, test } from 'qunit';
 
 var subject;
 
 module( 'Unit - mixins:modelize', {
     beforeEach: function() {
-        subject = Ember.Object.createWithMixins( SlModelize );
+        subject = Ember.Object.extend( SlModelize ).create();
     }
 });
 

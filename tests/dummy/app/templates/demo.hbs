@@ -36,7 +36,7 @@ fixture: {
 }
 </pre>
 
-        <p>Passing this POJO through the <code>modelize</code> function will cause the object stored in the values for <code>foo</code>, <code>bar</code>, and the array stored on <code>car</code>, to be replaced with the models defined for those key names in the app.  <code>Modelize</code> looks up models via Ember's container, if a model is found then it is instantiated with the values from the fixture. <p>
+        <p>Passing this POJO through the <code>modelize</code> function will cause the object stored in the values for <code>foo</code>, <code>bar</code>, and the array stored on <code>car</code>, to be replaced with the models defined for those key names in the app.  <code>Modelize</code> looks up models via Ember's container, if a model is found then it is instantiated with the values from the fixture. </p>
 
         <p>You can verify this by typing the following commands into your browser's console:</p>
 
@@ -51,6 +51,6 @@ Car = Dummy.__container__.lookupFactory('model:car')
 Dummy.__container__.lookup('controller:application').get('model.foo.bar.car.firstObject')
 </pre>
 
-        <p>Or better yet, take a look at the tests!
+        <p>Or better yet, take a look at the tests!</p>
     </div>
 </div>
