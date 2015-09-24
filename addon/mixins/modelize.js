@@ -42,13 +42,13 @@ export default Ember.Mixin.create({
         for ( var property in response ) {
             // Appears to be an issue with the __each attribute in some Ember arrays
             // that causes a recursive loop that crashes the browser
-            if ( '__each' === property ) {
+            if ( '__each' === property || '[]' === property ) {
                 continue;
             }
 
             if ( response.hasOwnProperty( property ) ) {
                 if ( 'object' === typeof response[ property ] ) {
-                    var normalizedKey = this.container.normalize( 'model:'+property );
+                    var normalizedKey = this.container._registry.normalize( 'model:'+property );
                     var classProperty = this.container.lookupFactory( normalizedKey );
 
                     if ( 'function' === typeof classProperty ) {
